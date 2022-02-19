@@ -1,0 +1,341 @@
+body{
+    color: #CCCCCC;
+    background-color: #1D1D1D;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-family:'メイリオ', 'Meiryo','ＭＳ ゴシック','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
+
+button, input, select, textarea {
+    font-family : 'メイリオ', 'Meiryo','ＭＳ ゴシック','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
+
+#overlay{
+    position: fixed;
+    top: 32px;
+    z-index: 100;
+    width: 100%;
+    height:100%;
+    display: none;
+    background: rgba(0,0,0,0.6);
+}
+
+.cv-spinner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px #CCCCCC solid;
+    border-top: 4px #0E639C solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+    margin-bottom: 20px;
+}
+@keyframes sp-anime {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.titlebar {
+    background-color: #323232;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    width:100%;
+    height:32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titlebar_icon{
+    margin: 6px;
+}
+
+.titlebar_subject{
+    margin-top: 1px;
+    margin-left: 4px;
+    margin-right: auto;
+    font-size: 12px;
+    line-height: 32px;
+}
+
+.titlebar_end_button{
+    color: #CCCCCC;
+    background-color: transparent;
+    text-decoration: none;
+    border: 0px;
+    transition: .3s;
+    text-align: center;
+    width: 50px;
+    height:100%;
+    -webkit-app-region: no-drag;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.titlebar_end_button:hover{
+    cursor:pointer;
+    background-color: #D71526;
+}
+
+.exec_area{
+    background-color: #252525;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+.setting_area{
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 40px;
+    margin-right: 25px;
+    height: 510px;
+    overflow-y: scroll;
+}
+
+#exec_button {
+    color: #CCCCCC;
+    background-color: #0E639C;
+    text-decoration: none;
+    border: 0px;
+    border-radius: 3px;
+    transition: .3s;
+    text-align: center;
+    width: 98px;
+    height:28px;
+    font-size: 16px;
+    outline: none;
+}
+
+#exec_button:hover{
+    cursor:pointer;
+    background-color: #1177BB;
+}
+
+#exex_result_lbl{
+    margin-left: 30px;
+}
+
+#exex_result_txt{
+    margin-left: 10px;
+    background-color: #323232;
+    color: #CCCCCC;
+    border: 1px solid #323232;
+    width: 639px;
+    height: 26px;
+    font-size: 16px;
+}
+
+#exex_result_txt:focus{
+    border: 1px solid #0E639C;
+    outline: none;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+table tr{
+    border-bottom: solid 1px #323232;
+    cursor: default;
+}
+
+table td{
+    text-align: left;
+    padding: 8px 0;
+}
+
+.col_accordion{
+    width: 7%;
+}
+
+.col_no{
+    width: 5%;
+}
+
+.col_name{
+    width: 25%;
+}
+
+.col_onoff{
+    width: 10%;
+}
+
+.col_setting{
+    width: 43%;
+}
+
+.col_setting_btn{
+    width: 10%;
+}
+
+.toggle-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.toggle-label {
+    width: 56px;
+    height: 28px;
+    background: #323232;
+    position: relative;
+    display: inline-block;
+    border-radius: 28px;
+    transition: 0.4s;
+    box-sizing: border-box;
+}
+
+.toggle-label:after{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    left: 4px;
+    top: 4px;
+    z-index: 2;
+    background: #CCCCCC;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+}
+
+.toggle-input:checked + .toggle-label {
+    background-color: #4BD865;
+}
+
+.toggle-input:checked + .toggle-label:after {
+    left: 32px;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 56px;
+    height: 28px;
+}
+
+.setting_name{
+    text-align: right;
+    padding-right: 12px;
+    font-size: 14px;
+}
+
+.setting_tfs,
+.setting_build,
+.setting_module,
+.setting_upload,
+.setting_upload_sql,
+.setting_mail{
+    display: none;
+}
+
+.close {
+    display: none;
+}
+
+.open,
+.close {
+    float: left;
+    text-decoration: none;
+    color: #CCCCCC;
+    position:relative;
+    background: #0E639C;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+}
+
+.open:hover,
+.close:hover {
+    background-color: #1177BB;
+}
+
+.setting_button {
+    color: #CCCCCC;
+    background-color: #0E639C;
+    text-decoration: none;
+    border: 0px;
+    border-radius: 3px;
+    transition: .3s;
+    text-align: center;
+    width: 56px;
+    height:24px;
+    font-size: 14px;
+    outline: none;
+    display: block;
+    margin: 1px 11px 0 auto;
+}
+
+.setting_button:hover{
+    cursor:pointer;
+    background-color: #1177BB;
+}
+
+.setting_text{
+    background-color: #323232;
+    color: #CCCCCC;
+    border: 1px solid #323232;
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+}
+
+.setting_text:focus{
+    border: 1px solid #0E639C;
+    outline: none;
+}
+
+.setting_textarea{
+    resize: none;
+    width:99%;
+    height:90px;
+    font-size: 14px;
+    background-color: #323232;
+    color: #CCCCCC;
+    border: 1px solid #323232;
+}
+
+.setting_textarea:focus{
+    border: 1px solid #0E639C;
+    outline: none;
+}
+
+#mail_cc,
+#mail_bcc{
+    height:32px;
+}
+
+/*スクロールバー全体*/
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/*スクロールバーの動く部分*/
+::-webkit-scrollbar-thumb {
+    background-color: rgba(204, 204, 204, .5);
+    border-radius: 15px;
+}
+
+#mail_text{
+    margin-top:4px;
+}

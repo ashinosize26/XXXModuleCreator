@@ -1,0 +1,50 @@
+{
+    "work_path": "",
+    "vs_path": "",
+    "sol_path": [
+        ""
+    ],
+    "cpy_dst": "",
+    "cpy_src_exe": [
+        ""
+    ],
+    "cpy_src_dll": [
+        ""
+    ],
+    "cpy_src_other": [
+        ""
+    ],
+    "cpy_src_print": [
+        ""
+    ],
+    "cpy_src_other_folder": [
+        ""
+    ],
+    "upload_dst": "",
+    "upload_name": "メニュー_%YYYYMMDD",
+    "upload_src_sql": "",
+    "upload_dst_sql": "",
+    "upload_src_japan_view": "",
+    "upload_dst_japan_view": "",
+    "upload_src_postgre": "",
+    "upload_dst_postgre": "",
+    "mail_to": [
+        ""
+    ],
+    "mail_cc": [
+        ""
+    ],
+    "mail_bcc": [
+        ""
+    ],
+    "mail_subject": "【XXX】最新モジュール(%MM/DD)",
+    "mail_text": [
+        "各位",
+        "",
+        "%MM/DDの%HH:mmまでにチェックインされているプログラムでモジュールを作成し、",
+        "以下に置きました。",
+        "\\\\hoge\\メニュー_%YYYYMMDD",
+        "",
+        "以上"
+    ]
+}

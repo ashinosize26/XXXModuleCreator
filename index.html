@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="main.css">
+  <title>XXXモジュール作成くん</title>
+  <script src="form.js"></script>
+</head>
+<body>
+  <div id="overlay">
+    <div class="cv-spinner">
+        <span class="spinner"></span>
+        <label id="proc_outline"></label>
+        <label id="proc_detail"></label>
+    </div>
+  </div>
+  <div class="titlebar">
+    <img class="titlebar_icon" src="images/icon.png">
+    <div class="titlebar_subject">XXXモジュール作成くん</div>
+    <input class="titlebar_end_button" type="button" value="×" onclick="window.close();">
+  </div>
+  <div class="exec_area">
+    <input type="button" id="exec_button" value="実行" onclick="execPA()">
+    <label for="exex_result" id="exex_result_lbl">結果</label>
+    <input type="text" id="exex_result_txt">
+  </div>
+  <div class="setting_area">
+    <table>
+      <tr>
+        <td class="col_accordion">
+          <a href="#" class="open" id="open_tfs">＋</a><a href="#" class="close" id="close_tfs">－</a>
+        </td>
+        <td class="col_no">1</td>
+        <td class="col_name">TFSから最新取得</td>
+        <td class="col_onoff">
+          <div class="toggle-switch">
+            <input id="toggle_tfs_get" class="toggle-input" type='checkbox' checked />
+            <label for="toggle_tfs_get" class="toggle-label"></label>
+          </div>
+        </td>
+        <td class="col_setting"></td>
+        <td class="col_setting_btn"></td>
+      </tr>
+      <tr class="setting_tfs">
+        <td colspan="2"></td>
+        <td class="setting_name">ワークスペース</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="work_path">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_work_path()">
+        </td>
+      </tr>
+      <tr>
+        <td class="col_accordion">
+          <a href="#" class="open" id="open_build">＋</a><a href="#" class="close" id="close_build">－</a>
+        </td>
+        <td class="col_no">2</td>
+        <td class="col_name">ビルド</td>
+        <td class="col_onoff">
+          <div class="toggle-switch">
+            <input id="toggle_build" class="toggle-input" type='checkbox' checked />
+            <label for="toggle_build" class="toggle-label"></label>
+          </div>
+        </td>
+        <td class="col_setting"></td>
+        <td class="col_setting_btn"></td>
+      </tr>
+      <tr class="setting_build">
+        <td colspan="2"></td>
+        <td class="setting_name">ソリューション</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="sol_path"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_sol_path()">
+        </td>
+      </tr>
+      <tr class="setting_build">
+        <td colspan="2"></td>
+        <td class="setting_name">VS実行ファイル</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="vs_path">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_vs_path()">
+        </td>
+      </tr>
+      <tr>
+        <td class="col_accordion">
+          <a href="#" class="open" id="open_module">＋</a><a href="#" class="close" id="close_module">－</a>
+        </td>
+        <td class="col_no">3</td>
+        <td class="col_name">モジュール作成</td>
+        <td class="col_onoff">
+          <div class="toggle-switch">
+            <input id="toggle_copy" class="toggle-input" type='checkbox' checked />
+            <label for="toggle_copy" class="toggle-label"></label>
+          </div>
+        </td>
+        <td class="col_setting"></td>
+        <td class="col_setting_btn"></td>
+      </tr>
+      <tr class="setting_module">
+        <td colspan="2"></td>
+        <td class="setting_name">dst</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="cpy_dst">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_cpy_dst()">
+        </td>
+      </tr>
+      <tr class="setting_module">
+        <td colspan="2"></td>
+        <td class="setting_name">.exe：src</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="cpy_src_exe"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_cpy_src_exe()">
+        </td>
+      </tr>
+      <tr class="setting_module">
+        <td colspan="2"></td>
+        <td class="setting_name">.dll：src</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="cpy_src_dll"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_cpy_src_dll()">
+        </td>
+      </tr>
+      <tr class="setting_module">
+        <td colspan="2"></td>
+        <td class="setting_name">その他ファイル：src</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="cpy_src_other"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_cpy_src_other()">
+        </td>
+      </tr>
+      <tr class="setting_module">
+        <td colspan="2"></td>
+        <td class="setting_name">.rpt, .xltx：src<br>※1階層下まで検索</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="cpy_src_print"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_cpy_src_print()">
+        </td>
+      </tr>
+      <tr class="setting_module">
+        <td colspan="2"></td>
+        <td class="setting_name">その他フォルダ：src</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="cpy_src_other_folder"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_cpy_src_other_folder()">
+        </td>
+      </tr>
+      <tr>
+        <td class="col_accordion">
+          <a href="#" class="open" id="open_upload">＋</a><a href="#" class="close" id="close_upload">－</a>
+        </td>
+        <td class="col_no">4</td>
+        <td class="col_name">モジュールアップロード</td>
+        <td class="col_onoff">
+          <div class="toggle-switch">
+            <input id="toggle_upload" class="toggle-input" type='checkbox' checked />
+            <label for="toggle_upload" class="toggle-label"></label>
+          </div>
+        </td>
+        <td class="col_setting">
+          <input class="setting_text" type="text" id="upload_name">
+        </td>
+        <td class="col_setting_btn"></td>
+      </tr>
+      <tr class="setting_upload">
+        <td colspan="2"></td>
+        <td class="setting_name">dst</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="upload_dst">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_upload_dst()">
+        </td>
+      </tr>
+      <tr>
+        <td class="col_accordion">
+          <a href="#" class="open" id="open_upload_sql">＋</a><a href="#" class="close" id="close_upload_sql">－</a>
+        </td>
+        <td class="col_no">5</td>
+        <td class="col_name">SQL関連アップロード</td>
+        <td class="col_onoff">
+          <div class="toggle-switch">
+            <input id="toggle_upload_sql" class="toggle-input" type='checkbox' checked />
+            <label for="toggle_upload_sql" class="toggle-label"></label>
+          </div>
+        </td>
+        <td class="col_setting"></td>
+        <td class="col_setting_btn"></td>
+      </tr>
+      <tr class="setting_upload_sql">
+        <td colspan="2"></td>
+        <td class="setting_name">SQL：src</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="upload_src_sql">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_upload_src_sql()">
+        </td>
+      </tr>
+      <tr class="setting_upload_sql">
+        <td colspan="2"></td>
+        <td class="setting_name">SQL：dst</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="upload_dst_sql">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_upload_dst_sql()">
+        </td>
+      </tr>
+      <tr class="setting_upload_sql">
+        <td colspan="2"></td>
+        <td class="setting_name">日本語ビュー：src</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="upload_src_japan_view">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_upload_src_japan_view()">
+        </td>
+      </tr>
+      <tr class="setting_upload_sql">
+        <td colspan="2"></td>
+        <td class="setting_name">日本語ビュー：dst</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="upload_dst_japan_view">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_upload_dst_japan_view()">
+        </td>
+      </tr>
+      <tr class="setting_upload_sql">
+        <td colspan="2"></td>
+        <td class="setting_name">PostgreSQL：src</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="upload_src_postgre">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_upload_src_postgre()">
+        </td>
+      </tr>
+      <tr class="setting_upload_sql">
+        <td colspan="2"></td>
+        <td class="setting_name">PostgreSQL：dst</td>
+        <td colspan="2">
+          <input class="setting_text" type="text" id="upload_dst_postgre">
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_upload_dst_postgre()">
+        </td>
+      </tr>
+      <tr>
+        <td class="col_accordion">
+          <a href="#" class="open" id="open_mail">＋</a><a href="#" class="close" id="close_mail">－</a>
+        </td>
+        <td class="col_no">6</td>
+        <td class="col_name">通知メール送信</td>
+        <td class="col_onoff">
+          <div class="toggle-switch">
+            <input id="toggle_mail" class="toggle-input" type='checkbox' checked />
+            <label for="toggle_mail" class="toggle-label"></label>
+          </div>
+        </td>
+        <td class="col_setting">
+          <input class="setting_text" type="text" id="mail_subject">
+          <textarea class="setting_textarea" id="mail_text"></textarea>
+        </td>
+        <td class="col_setting_btn"></td>
+      </tr>
+      <tr class="setting_mail">
+        <td colspan="2"></td>
+        <td class="setting_name">To</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="mail_to"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_mail_to()">
+        </td>
+      </tr>
+      <tr class="setting_mail">
+        <td colspan="2"></td>
+        <td class="setting_name">CC</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="mail_cc"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_mail_cc()">
+        </td>
+      </tr>
+      <tr class="setting_mail">
+        <td colspan="2"></td>
+        <td class="setting_name">BCC</td>
+        <td colspan="2">
+          <textarea class="setting_textarea" id="mail_bcc"></textarea>
+        </td>
+        <td>
+          <input class="setting_button" type="button" value="保存" onclick="save_mail_bcc()">
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
